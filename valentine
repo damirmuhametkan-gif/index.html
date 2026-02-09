@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Айдай 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #ffd1dc, #ff9ebc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.card {
+  background: white;
+  border-radius: 28px;
+  padding: 30px 25px 40px;
+  text-align: center;
+  width: 340px;
+  box-shadow: 0 25px 60px rgba(0,0,0,.25);
+  position: relative;
+  z-index: 10;
+}
+
+.dog-img {
+  width: 140px;
+  margin: 0 auto 10px;
+}
+
+h1 {
+  color: #c2185b;
+  font-size: 22px;
+  margin: 15px 0 25px;
+}
+
+.buttons {
+  position: relative;
+  height: 100px;
+}
+
+button {
+  border: none;
+  border-radius: 22px;
+  padding: 15px 30px;
+  font-size: 16px;
+  cursor: pointer;
+  position: absolute;
+  transition: .15s ease;
+}
+
+#yes {
+  background: #e91e63;
+  color: white;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#no {
+  background: #f1f1f1;
+  color: #555;
+  left: 50%;
+  top: 52px;
+  transform: translateX(-50%);
+}
+
+.note {
+  margin-top: 85px;
+  font-size: 12px;
+  color: #888;
+}
+
+/* hearts */
+.heart {
+  position: absolute;
+  color: #ff3d6b;
+  animation: fly 5s linear forwards;
+  opacity: .8;
+}
+
+@keyframes fly {
+  0% { transform: translateY(0) scale(.5); opacity: 0 }
+  10% { opacity: 1 }
+  100% { transform: translateY(-900px) scale(1.6); opacity: 0 }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <img class="dog-img"
+       src="https://i.imgur.com/3QZ7K7O.png"
+       alt="Такса">
+
+  <h1>Айдай, ты будешь моей валентинкой?</h1>
+
+  <div class="buttons">
+    <button id="yes">Да</button>
+    <button id="no">Нет</button>
+  </div>
+
+  <div class="note">Отказ не предусмотрен 😈</div>
+</div>
+
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+let escapes = 0;
+
+noBtn.addEventListener("mouseenter", () => {
+  escapes++;
+  if (navigator.vibrate) navigator.vibrate([80,40,80]);
+
+  const x = Math.random() * 260 - 130;
+  const y = Math.random() * 120 - 60;
+  const scale = Math.max(0.4, 1 - escapes * 0.15);
+
+  noBtn.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+
+  if (escapes >= 5) {
+    noBtn.style.opacity = "0";
+    setTimeout(() => noBtn.remove(), 200);
+  }
+});
+
+yesBtn.addEventListener("click", () => {
+  if (navigator.vibrate) navigator.vibrate([200,100,200,100,300]);
+  explodeHearts();
+
+  setTimeout(() => {
+    document.body.innerHTML = `
+      <div style="
+        height:100vh;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        background:radial-gradient(circle,#ff9a9e,#fad0c4);
+        color:white;
+        text-align:center;
+        font-family:sans-serif;
+        padding:20px;
+      ">
+        <img src="https://i.imgur.com/2JYQ4Yw.jpg"
+             style="width:220px;border-radius:22px;box-shadow:0 15px 40px rgba(0,0,0,.4)">
+        <div style="font-size:42px;margin-top:-30px">❤️</div>
+        <h1 style="font-size:34px;margin:10px 0">Айдай</h1>
+        <p style="font-size:20px;max-width:320px">
+          я правда очень рад, что ты нажала «Да».
+          <br><br>
+          Теперь ты официально моя валентинка 💘
+        </p>
+      </div>
+    `;
+  }, 700);
+});
+
+function explodeHearts() {
+  for (let i = 0; i < 40; i++) {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerText = "❤";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.bottom = "0px";
+    h.style.fontSize = (14 + Math.random() * 26) + "px";
+    h.style.animationDuration = (3 + Math.random() * 2) + "s";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 5000);
+  }
+}
+</script>
+
+</body>
+</html>
