@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Дамир &amp; Айдайдын — Үйлену тойы</title>
+<title>Дамир &amp; Айдай — Үйлену тойы</title>
 <link rel="preconnect" href="https://fonts.cdnfonts.com">
 <link href="https://fonts.cdnfonts.com/css/bickham-script-pro" rel="stylesheet">
 <style>
