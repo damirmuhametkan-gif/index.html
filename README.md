@@ -677,7 +677,7 @@
 </div>
 
 <!-- Фондык музыка: "Махаббатым" әнінің припев бөлігі (шамамен 1 минут), файлдың ішіне тікелей ендірілген -->
-<audio id="bgMusic" preload="auto" loop>
+<audio id="Baqzhvn_Махаббатым_Qazaq_Edition_Радио_Hits_Beats" preload="auto" loop>
   <source src="data:audio/mpeg;Baqzhvn_Махаббатым_Qazaq_Edition_Радио_Hits_Beats/ type="audio/mpeg">
 </audio>
 
